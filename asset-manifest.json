@@ -1,0 +1,79 @@
+{
+  "use": "Fictional illustrative wedding-planner demo. Photos illustrate ceremonies and destinations, not planner client work. Sangeet is an atmospheric night portrait; destination is architecture, not a wedding event.",
+  "licenses": {
+    "Unsplash": {
+      "url": "https://unsplash.com/license",
+      "reuse": "Free commercial and noncommercial download/use/modify; attribution appreciated, not required. Do not sell unmodified image or build competing stock service."
+    },
+    "Pexels": {
+      "url": "https://www.pexels.com/license/",
+      "reuse": "Free download/use/modify, including websites; attribution not required. Do not imply endorsement by pictured people, depict them offensively, sell unmodified copies or redistribute as stock."
+    }
+  },
+  "assets": [
+    {
+      "file": "haldi.jpg",
+      "description": "Haldi celebration: women dancing in yellow",
+      "photographer": "Royal Photography",
+      "source_url": "https://unsplash.com/photos/women-in-yellow-dancing-at-a-traditional-haldi-ceremony-dlUHAXPiEoA",
+      "download_url": "https://images.unsplash.com/photo-1780227103127-399b439cdd4a?auto=format&fit=crop&w=1600&q=85",
+      "license": "Unsplash"
+    },
+    {
+      "file": "haldi-bride.jpg",
+      "description": "Bride with marigold floral jewelry at haldi",
+      "photographer": "Rejaul Karim",
+      "source_url": "https://unsplash.com/photos/bride-adorned-with-flowers-for-a-traditional-ceremony-pF5rrGz_Yjw",
+      "download_url": "https://images.unsplash.com/photo-1771992229225-cedf6a2d9b0f?auto=format&fit=crop&w=1600&q=85",
+      "license": "Unsplash"
+    },
+    {
+      "file": "ceremony.jpg",
+      "description": "Indian couple under floral mandap; landscape, best hero candidate",
+      "photographer": "AMISH THAKKAR",
+      "source_url": "https://unsplash.com/photos/wedding-ceremony-under-floral-canopy-7O422yG_b80",
+      "download_url": "https://images.unsplash.com/photo-1587271636175-90d58cdad458?auto=format&fit=crop&w=2200&q=85",
+      "license": "Unsplash"
+    },
+    {
+      "file": "hero-celebration.jpg",
+      "description": "Indian ceremony at night under warm hanging lights; portrait",
+      "photographer": "iKshana Productions",
+      "source_url": "https://unsplash.com/photos/a-wedding-ceremony-is-taking-place-x4VUBob_Mzo",
+      "download_url": "https://images.unsplash.com/photo-1744804298341-61b081f8df8e?auto=format&fit=crop&w=2200&q=85",
+      "license": "Unsplash"
+    },
+    {
+      "file": "mehendi.jpg",
+      "description": "Bridal henna hands with bright green and pink saree",
+      "photographer": "sarayu P",
+      "source_url": "https://www.pexels.com/photo/a-bride-with-mehndi-14693637/",
+      "download_url": "https://images.pexels.com/photos/14693637/pexels-photo-14693637.jpeg?cs=srgb&fm=jpg",
+      "license": "Pexels"
+    },
+    {
+      "file": "sangeet.jpg",
+      "description": "Indian wedding couple portrait beneath fairy lights; night-event illustration",
+      "photographer": "Khaas Photographer",
+      "source_url": "https://www.pexels.com/photo/elegant-indian-wedding-couple-under-lights-31832621/",
+      "download_url": "https://images.pexels.com/photos/31832621/pexels-photo-31832621.jpeg?cs=srgb&fm=jpg",
+      "license": "Pexels"
+    },
+    {
+      "file": "reception.jpg",
+      "description": "Celebrating Indian wedding couple under warm lamps; landscape",
+      "photographer": "Fliqa India",
+      "source_url": "https://www.pexels.com/photo/elegant-indian-wedding-couple-under-warm-lights-35635688/",
+      "download_url": "https://images.pexels.com/photos/35635688/pexels-photo-35635688.jpeg?cs=srgb&fm=jpg",
+      "license": "Pexels"
+    },
+    {
+      "file": "destination.jpg",
+      "description": "City Palace on Lake Pichola, Udaipur at golden hour; destination location photo",
+      "photographer": "Maitree Patel",
+      "source_url": "https://unsplash.com/photos/city-palace-on-lake-pichola-udaipur-t2x2R0ZpXpw",
+      "download_url": "https://images.unsplash.com/photo-1695956353120-54ce5e91632b?auto=format&fit=crop&w=1800&q=85",
+      "license": "Unsplash"
+    }
+  ]
+}
