@@ -12,7 +12,7 @@
   },
   "assets": [
     {
-      "file": "haldi.jpg",
+      "file": "haldi.webp",
       "description": "Haldi celebration: women dancing in yellow",
       "photographer": "Royal Photography",
       "source_url": "https://unsplash.com/photos/women-in-yellow-dancing-at-a-traditional-haldi-ceremony-dlUHAXPiEoA",
@@ -20,7 +20,7 @@
       "license": "Unsplash"
     },
     {
-      "file": "haldi-bride.jpg",
+      "file": "haldi-bride.webp",
       "description": "Bride with marigold floral jewelry at haldi",
       "photographer": "Rejaul Karim",
       "source_url": "https://unsplash.com/photos/bride-adorned-with-flowers-for-a-traditional-ceremony-pF5rrGz_Yjw",
@@ -28,7 +28,7 @@
       "license": "Unsplash"
     },
     {
-      "file": "ceremony.jpg",
+      "file": "ceremony.webp",
       "description": "Indian couple under floral mandap; landscape, best hero candidate",
       "photographer": "AMISH THAKKAR",
       "source_url": "https://unsplash.com/photos/wedding-ceremony-under-floral-canopy-7O422yG_b80",
@@ -36,7 +36,7 @@
       "license": "Unsplash"
     },
     {
-      "file": "hero-celebration.jpg",
+      "file": "hero-celebration.webp",
       "description": "Indian ceremony at night under warm hanging lights; portrait",
       "photographer": "iKshana Productions",
       "source_url": "https://unsplash.com/photos/a-wedding-ceremony-is-taking-place-x4VUBob_Mzo",
@@ -44,7 +44,7 @@
       "license": "Unsplash"
     },
     {
-      "file": "mehendi.jpg",
+      "file": "mehendi.webp",
       "description": "Bridal henna hands with bright green and pink saree",
       "photographer": "sarayu P",
       "source_url": "https://www.pexels.com/photo/a-bride-with-mehndi-14693637/",
@@ -52,7 +52,7 @@
       "license": "Pexels"
     },
     {
-      "file": "sangeet.jpg",
+      "file": "sangeet.webp",
       "description": "Indian wedding couple portrait beneath fairy lights; night-event illustration",
       "photographer": "Khaas Photographer",
       "source_url": "https://www.pexels.com/photo/elegant-indian-wedding-couple-under-lights-31832621/",
@@ -60,7 +60,7 @@
       "license": "Pexels"
     },
     {
-      "file": "reception.jpg",
+      "file": "reception.webp",
       "description": "Celebrating Indian wedding couple under warm lamps; landscape",
       "photographer": "Fliqa India",
       "source_url": "https://www.pexels.com/photo/elegant-indian-wedding-couple-under-warm-lights-35635688/",
@@ -68,7 +68,7 @@
       "license": "Pexels"
     },
     {
-      "file": "destination.jpg",
+      "file": "destination.webp",
       "description": "City Palace on Lake Pichola, Udaipur at golden hour; destination location photo",
       "photographer": "Maitree Patel",
       "source_url": "https://unsplash.com/photos/city-palace-on-lake-pichola-udaipur-t2x2R0ZpXpw",

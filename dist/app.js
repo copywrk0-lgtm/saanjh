@@ -1,52 +1,65 @@
 'use strict';
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.documentElement.classList.add('js-ready');
 function installLoadingIntro() {
   const root = document.documentElement;
   if (!root.classList.contains('loading-intro')) return;
   const loader = document.querySelector('.site-loader');
   if (!loader) {root.classList.remove('loading-intro'); return;}
-  const start = window.__saanjhIntroStarted || performance.now();
-  let finished = false;
+  // Start the hold once the intro is ready to display and accept input.
+  const start = performance.now();
+  let finished = false, removed = false;
+  function removeIntro() {
+    if (removed) return;
+    removed = true;
+    root.classList.remove('loading-intro', 'intro-leaving');
+    root.classList.add('intro-finished');
+    loader.remove();
+    clearTimeout(window.__saanjhIntroFallback);
+  }
   function finish(immediate = false) {
-    if (finished) return;
+    if (finished) {if (immediate) removeIntro();return;}
     finished = true;
-    try {sessionStorage.setItem('saanjh-intro-seen', '1');} catch {}
+    try {sessionStorage.setItem('saanjh-intro-seen-v2', '1');} catch {}
     root.classList.add('intro-leaving');
-    setTimeout(() => {
-      root.classList.remove('loading-intro', 'intro-leaving');
-      root.classList.add('intro-finished');
-      loader.remove();
-    }, immediate || reduced ? 0 : 700);
+    if (immediate || reduced) removeIntro();
+    else setTimeout(removeIntro, 1000);
   }
   loader.querySelector('button')?.addEventListener('click', () => finish(true));
   document.addEventListener('focusin', event => {if (!loader.contains(event.target)) finish(true);});
+  matchMedia('(prefers-reduced-motion: reduce)').addEventListener?.('change', event => {if(event.matches) finish(true);});
   const hero = document.querySelector('.hero > img');
   const heroReady = !hero || hero.complete ? Promise.resolve() : new Promise(resolve => {
     hero.addEventListener('load', resolve, {once:true}); hero.addEventListener('error', resolve, {once:true});
   });
   const fontReady = document.fonts?.ready || Promise.resolve();
   Promise.race([Promise.all([heroReady, fontReady]),new Promise(resolve=>setTimeout(resolve,2200))]).then(() => {
-    setTimeout(() => finish(), Math.max(0, 1100 - (performance.now() - start)));
+    setTimeout(() => finish(), Math.max(0, 3000 - (performance.now() - start)));
   });
-  setTimeout(() => finish(true), 3300);
+  setTimeout(() => finish(true), 5000);
 }
 installLoadingIntro();
 const menu = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.navlinks');
+function closeMenu() {
+  navigation?.classList.remove('open');
+  menu?.setAttribute('aria-expanded', 'false');
+  if (menu) menu.textContent = 'Menu';
+}
 menu?.addEventListener('click', () => {
   const open = menu.getAttribute('aria-expanded') !== 'true';
   menu.setAttribute('aria-expanded', String(open));
   navigation.classList.toggle('open', open);
   menu.textContent = open ? 'Close' : 'Menu';
 });
-navigation?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  navigation.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); menu.textContent = 'Menu';
-}));
+navigation?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && navigation?.classList.contains('open')) {
-    navigation.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); menu.textContent = 'Menu'; menu.focus();
+    closeMenu();menu.focus();
   }
 });
+document.addEventListener('click', e=>{if(navigation?.classList.contains('open')&&!e.target.closest('.nav')) closeMenu();});
+matchMedia('(min-width:641px)').addEventListener?.('change',e=>{if(e.matches) closeMenu();});
 // Content stays visible without animation support. Motion enhances the page,
 // rather than becoming a prerequisite for reading or using it.
 function installReveals() {
@@ -133,7 +146,7 @@ function installReveals() {
   addEventListener('pageshow',revealInViewport);
   requestAnimationFrame(revealInViewport);
 }
-installReveals();
+try {installReveals();} catch {document.documentElement.classList.remove('motion-on');}
 const weekend = document.querySelector('.weekend');
 if (weekend) {
   const events = [...document.querySelectorAll('.event')];
@@ -170,11 +183,13 @@ if (hover && matchMedia('(hover:hover) and (pointer:fine)').matches && !reduced)
 }
 document.querySelectorAll('.comparison').forEach(el => {
   const range = el.querySelector('input');
-  range.addEventListener('input', () => {
+  function updateComparison() {
     el.querySelector('.mood-board').style.clipPath = `inset(0 ${100 - Number(range.value)}% 0 0)`;
     el.querySelector('.comparison-divider').style.left = `${range.value}%`;
     range.setAttribute('aria-valuetext', `${range.value}% moodboard revealed`);
-  });
+  }
+  range.addEventListener('input', updateComparison);
+  updateComparison();
 });
 const venues = [
   {name:'Taj Lake Palace',city:'Udaipur',point:[24.5854,73.7125],url:'https://www.tajhotels.com/en-in/hotels/taj-lake-palace-udaipur',query:'Taj Lake Palace Udaipur'},
@@ -192,7 +207,7 @@ if (mapElement) {
     if (map && move) {map.flyTo(venues[i].point, 7, {animate:!reduced,duration:1});markers[i].openPopup();}
   }
   document.querySelectorAll('.venue-select').forEach(b=>b.addEventListener('click',()=>selectVenue(Number(b.dataset.venue))));
-  if (window.L) {
+  try {if (window.L) {
     map = L.map('venue-map',{zoomControl:false,scrollWheelZoom:false, dragging:!L.Browser.mobile}).fitBounds(venues.map(v=>v.point), {padding:[55,55]});
     L.control.zoom({position:'bottomleft'}).addTo(map);
     // Bundled geography keeps the destination map independent of tile services.
@@ -203,6 +218,11 @@ if (mapElement) {
     map.setMinZoom(3);map.setMaxZoom(7);
     markers=venues.map((v,i)=>L.marker(v.point,{title:v.city,icon:L.divIcon({html:`<span class="venue-pin">${i+1}</span>`,className:'map-pin',iconSize:[30,30],iconAnchor:[15,15]})}).addTo(map).bindPopup(`${v.city}<br>Suggested: ${v.name}`).on('click',()=>selectVenue(i,false)));
   } else document.querySelector('.map-label').textContent='Choose a destination from the shortlist';
+  } catch {
+    try {map?.remove();} catch {}
+    map=undefined;markers=[];
+    document.querySelector('.map-label').textContent='Choose a destination from the shortlist';
+  }
 }
 const form = document.querySelector('#brief-form');
 if (form) {

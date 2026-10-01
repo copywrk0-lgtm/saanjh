@@ -24,18 +24,19 @@ opening the HTML directly from the filesystem will not resolve the root-relative
 ## Loading screen and reveal behavior
 
 The burgundy Saanjh intro plays on the first homepage visit in a browser session.
-It waits briefly for the hero and fonts, then opens in two panels. Skip intro is available.
+It reveals the name and tagline, holds for three seconds after the intro is ready, then opens in two panels
+over one second (about four seconds total). Skip intro is available.
 The screen has bounded timeouts and is skipped for reduced-motion preferences and deep links.
-Clear the `saanjh-intro-seen` session storage item to replay it.
+Clear the `saanjh-intro-seen-v2` session storage item to replay it.
 
 Photo masks run only when a reveal starts; photographs remain visible by default.
 The interactive map never uses an animation mask.
 
 ## External resources
 
-All wedding images, Leaflet and map geography are included locally. The map uses
+All wedding images, fonts, Leaflet and map geography are included locally. The map uses
 public-domain Natural Earth country outlines (via world-atlas 2.0.2), without a tile
-service or API key. Google Fonts need an internet connection; system fonts remain available.
+service or API key. Italiana and DM Sans are bundled with their SIL Open Font Licences.
 
 The story names, numbers and scenarios are fictional. Photos are illustrative stock images.
 Image credits and source links are on `/credits/` and in `asset-manifest.json`.
